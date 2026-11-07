@@ -1,5 +1,6 @@
 mod vpn;
 
+#[cfg(windows)]
 use std::os::windows::process::CommandExt;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
@@ -63,14 +64,26 @@ fn local_mac() -> String {
 
 #[tauri::command]
 fn is_elevated() -> bool {
-    // The exe now carries a requireAdministrator manifest, so this is always
-    // true in release; kept so the UI can still warn in a dev run.
-    std::process::Command::new("net")
-        .arg("session")
-        .creation_flags(0x0800_0000)
-        .output()
-        .map(|o| o.status.success())
-        .unwrap_or(false)
+    #[cfg(windows)]
+    {
+        // The exe carries a requireAdministrator manifest, so this is always
+        // true in release; kept so the UI can still warn in a dev run.
+        std::process::Command::new("net")
+            .arg("session")
+            .creation_flags(0x0800_0000)
+            .output()
+            .map(|o| o.status.success())
+            .unwrap_or(false)
+    }
+    #[cfg(not(windows))]
+    {
+        // TUN mode on macOS needs root; the app is expected to run via sudo.
+        std::process::Command::new("id")
+            .arg("-u")
+            .output()
+            .map(|o| String::from_utf8_lossy(&o.stdout).trim() == "0")
+            .unwrap_or(false)
+    }
 }
 
 /// Bring the main window back from the tray.

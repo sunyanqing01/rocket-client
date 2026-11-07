@@ -1,0 +1,8 @@
+{
+  "tag_name": "v1.0.4",
+  "target_commitish": "main",
+  "name": "v1.0.4 — UDP data plane",
+  "body": "## 更新内容 / What's New\n\n- **UDP 数据面（Legacy mode 3）**：协商 AES-128 加密 UDP 通道，绕过网关 TCP 窗口限制\n- 上传 0.5MB/s → **8-9MB/s**，下载 0.5MB/s → **5.5MB/s**（23ms RTT 链路）\n- UDP 协商失败/中断自动回退 TCP 数据面\n- TUN 网卡 MTU 1300 → 1400\n- 每秒吞吐诊断日志 `%TEMP%\rocket-tps.log`\n\n## 下载 / Downloads\n\n| 文件 | 说明 |\n|---|---|\n| `Rocket.Client.Setup.1.0.4.exe` | Windows 安装包（推荐，含托盘/开机自启） |\n| `Rocket.Client.1.0.4-win64-portable.zip` | 便携版：exe + wintun.dll + 使用说明 |\n\n运行需要 [wintun.dll](https://www.wintun.net/)（安装包已内置，便携版 zip 已附带）。\n\n---\n\n- **UDP data plane (Legacy mode 3)**: AES-128 encrypted UDP channel bypassing the gateway's TCP window\n- Upload 0.5MB/s → **8-9MB/s**, download 0.5MB/s → **5.5MB/s** (23ms RTT link)\n- Automatic fallback to the TCP data plane\n- TUN adapter MTU 1300 → 1400\n- Per-second throughput diagnostics in `%TEMP%\rocket-tps.log`",
+  "draft": false,
+  "prerelease": false
+}
