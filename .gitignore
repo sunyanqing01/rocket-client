@@ -5,3 +5,5 @@ dist/
 payload/
 *.exe
 *.dll
+release-assets/
+*.json.bak
