@@ -1,0 +1,29 @@
+[package]
+name = "rocket-gui"
+version = "1.0.4"
+description = "Rocket Client - SSL VPN client"
+authors = ["rocket-gui"]
+edition = "2021"
+
+[lib]
+name = "rocket_gui_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri-plugin-single-instance = "2"
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+native-tls = "0.2"
+wintun = "0.4"
+aes = "0.8"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
