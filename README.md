@@ -216,3 +216,18 @@ macOS 版通过 GitHub Actions 云端构建（公开仓库免费），产物为 
   SOCKS5/端口转发类功能不需要 root（CLI 版后续提供）
 - macOS 使用 **utun** 虚拟网卡 + **OpenSSL** TLS 后端（网关的老式 RSA 密钥交换 macOS 系统库已不再支持，OpenSSL 兼容）
 - 数据面同样是 UDP mode 3，失败自动回退 TCP
+
+---
+
+## macOS /苹果支持
+
+macOS 版通过 GitHub Actions 云端构建（公开仓库免费），产物为 universal .dmg（同时支持 Apple Silicon 与 Intel）。
+
+- **安装**：挂载 dmg，把 Rocket Client 拖进 Applications
+- **运行**：TUN 模式需要 root，请在终端执行：
+  ```bash
+  sudo "/Applications/Rocket Client.app/Contents/MacOS/Rocket Client"
+  ```
+  SOCKS5/端口转发类功能不需要 root（CLI 版后续提供）
+- macOS 使用 **utun** 虚拟网卡 + **OpenSSL** TLS 后端（网关的老式 RSA 密钥交换 macOS 系统库已不再支持，OpenSSL 兼容）
+- 数据面同样是 UDP mode 3，失败自动回退 TCP
